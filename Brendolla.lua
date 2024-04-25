@@ -68,33 +68,33 @@ local itemsTable = {
 	},
 	["fire"] = {
 		{ itemName = "green dragon leather", clientId = 5877, buy = 500 },
-		{ itemName = "blazing bone", clientId = 16131, buy = buy, sell = 2500 },
-		{ itemName = "draken sulphur", clientId = 11658, buy = buy, sell = 12500 },		
+		{ itemName = "blazing bone", clientId = 16131, buy = 2500 },
+		{ itemName = "draken sulphur", clientId = 11658, buy = 12500 },		
 	},
 	["ice"] = {
 		{ itemName = "winter wolf fur", clientId = 10295, buy = 500 },
-		{ itemName = "thick fur", clientId = 10307, buy = buy, sell = 2500 },
-		{ itemName = "deepling warts", clientId = 14012, buy = buy, sell = 12500 },		
+		{ itemName = "thick fur", clientId = 10307, buy = 2500 },
+		{ itemName = "deepling warts", clientId = 14012, buy = 12500 },		
 	},
 	["earth"] = {
 		{ itemName = "piece of swampling wood", clientId = 17823, buy = 500 },
-		{ itemName = "snake skin", clientId = 9694, buy = buy, sell = 2500 },
-		{ itemName = "brimstone fangs", clientId = 11702, buy = buy, sell = 12500 },	
+		{ itemName = "snake skin", clientId = 9694, buy = 2500 },
+		{ itemName = "brimstone fangs", clientId = 11702, buy = 12500 },	
 	},
 	["energy"] = {
 		{ itemName = "wyvern talisman", clientId = 9644, buy = 500 },
-		{ itemName = "crawler head", clientId = 14079, buy = buy, sell = 2500 },
-		{ itemName = "wyrm scale", clientId = 9665, buy = buy, sell = 12500 },	
+		{ itemName = "crawler head", clientId = 14079, buy = 2500 },
+		{ itemName = "wyrm scale", clientId = 9665, buy = 12500 },	
 	},
 	["holy"] = {
 		{ itemName = "cultish robe", clientId = 9639, buy = 500 },
-		{ itemName = "cultish mask", clientId = 9638, buy = buy, sell = 2500 },
-		{ itemName = "hellspawn tail", clientId = 10304, buy = buy, sell = 12500 },	
+		{ itemName = "cultish mask", clientId = 9638, buy = 2500 },
+		{ itemName = "hellspawn tail", clientId = 10304, buy = 12500 },	
 	},
 	["death"] = {
 		{ itemName = "flask of embalming", clientId = 11466, buy = 500 },
-		{ itemName = "gloom wolf fur", clientId = 22007, buy = buy, sell = 2500 },
-		{ itemName = "mystical hourglass", clientId = 9660, buy = buy, sell = 12500 },	
+		{ itemName = "gloom wolf fur", clientId = 22007, buy = 2500 },
+		{ itemName = "mystical hourglass", clientId = 9660, buy = 12500 },	
 	},	
 }
 
@@ -136,15 +136,13 @@ npcHandler:setCallback(CALLBACK_ON_TRADE_REQUEST, onTradeRequest)
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 
--- On buy npc shop message
 npcType.onBuyItem = function(npc, player, itemId, subType, amount, ignore, inBackpacks, totalCost)
 	npc:sellItem(player, itemId, amount, subType, 0, ignore, inBackpacks)
 end
--- On sell npc shop message
+
 npcType.onSellItem = function(npc, player, itemId, subtype, amount, ignore, name, totalCost)
 	player:sendTextMessage(MESSAGE_TRADE, string.format("Sold %ix %s for %i gold.", amount, name, totalCost))
 end
--- On check npc shop message (look item)
-npcType.onCheckItem = function(npc, player, clientId, subType) end
 
+npcType.onCheckItem = function(npc, player, clientId, subType) end
 npcType:register(npcConfig)
