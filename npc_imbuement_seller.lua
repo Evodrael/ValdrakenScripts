@@ -1,4 +1,4 @@
-local internalNpcName = "Brendolla"
+local internalNpcName = "Imbuement Seller"
 local npcType = Game.createNpcType(internalNpcName)
 local npcConfig = {}
 
